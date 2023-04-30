@@ -6,6 +6,8 @@ import Form from "./Form"
 import Paragraph from './Paragraph'
 import Alerts from "./Alerts"
 import {useState} from 'react'
+import { Link } from "react-router-dom"
+
 
 
 
@@ -15,21 +17,29 @@ function Navbar(value) {
 
     return (
         <>
+       
             <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{ backgroundColor: value.darkModeStatus }} >
                 <div className="container-fluid" style={{ backgroundColor: value.darkModeStatus }}>
-                    <a className="navbar-brand" href="/">{value.title}</a>
+                    <Link className="navbar-brand" to="/">{value.title}</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{ backgroundColor: value.darkModeStatus }}>
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="/">Home</a>
+                                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href> About us</a>
+                                <Link className="nav-link" to="/about"> About us</Link>
                             </li>
                         </ul>
+                    
+                   
+                            {/* <Route exact path="/about">
+                                <About></About>
+                            </Route> */}
+                            
+                        
                         <div className='d-flex' style={{ backgroundColor: value.darkModeStatus }}>
                             {/* <form className="d-flex" role="search">
                                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
@@ -54,7 +64,7 @@ function Navbar(value) {
 
              
             <Form colorComponents={value.colorComponents} setAlerts={setAlerts}></Form>
-
+       
         </>
     )
     function removeAlert(){
