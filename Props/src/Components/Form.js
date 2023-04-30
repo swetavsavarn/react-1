@@ -5,6 +5,7 @@ import ButtonArea from "./ButtonArea"
 function Form(props) {
     const [text, settext] = useState("")
     const [result, setresult] = useState("")
+    let wordCount = (text.length === 0) ? 0 : text.split(" ").length
     return (
         <>
             <div className="mb-3">
@@ -22,7 +23,7 @@ function Form(props) {
             </div>
 
             <div >
-                <Paragraph value={`word-count ${text.split(" ").length} letter-count ${text.length}`}></Paragraph>
+                <Paragraph value={`word-count ${wordCount} letter-count ${text.length}`}></Paragraph>
             </div>
 
 
@@ -30,26 +31,28 @@ function Form(props) {
         </>
     )
     function setstate(event) {
-        settext(event.target.value)
+        settext(event.target.value) 
 
 
     }
     function setresult1() {
-        console.log("hi")
         let temptext = text.toUpperCase()
         setresult(temptext)
+        props.setAlerts({ type: 'success', message: 'Changed to uppercase' })
 
 
     }
     function lowerCase() {
         let temptext = text.toLowerCase()
         setresult(temptext)
+        props.setAlerts({ type: 'success', message: 'Changed to lowercase' })
 
 
     }
     function clearText() {
         settext("")
         setresult("")
+        props.setAlerts({ type: 'danger', message: 'you are clearing text' })
     }
 
 

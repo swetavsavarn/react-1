@@ -4,10 +4,14 @@
 // import PropTypes from 'prop-types'
 import Form from "./Form"
 import Paragraph from './Paragraph'
+import Alerts from "./Alerts"
+import {useState} from 'react'
 
 
 
 function Navbar(value) {
+    const [alerts,setAlerts]=useState({})
+
 
     return (
         <>
@@ -41,10 +45,21 @@ function Navbar(value) {
                 </div>
 
             </nav >
-            <Form colorComponents={value.colorComponents}></Form>
+            {alerts.message && (
+                <>
+                <Alerts type={alerts.type} message={alerts.message}/>
+                {setTimeout(()=>removeAlert(), 1500)}
+                </>
+            )}
+
+             
+            <Form colorComponents={value.colorComponents} setAlerts={setAlerts}></Form>
 
         </>
     )
+    function removeAlert(){
+        setAlerts({type:'',message:''})
+    }
     function darkMode() {
         (value.darkModeStatus === 'white') ? setDarkMode() : setLightMode()
     }

@@ -2,7 +2,6 @@ function ButtonArea(props) {
     return (
         <>
             {props.buttonArray.map((items) => {
-                console.log(items)
                 return (<div className="mx-2">
                     <button onClick={items.onClick} className={items.className}>{items.name}</button>
                 </div>
